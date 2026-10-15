@@ -102,7 +102,7 @@ function App() {
         <motion.section className="learning section-wrap section-rule" id="learning" aria-labelledby="learning-title" {...reveal} viewport={{ once: true, margin: '-70px' }} transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}>
           <div className="section-label"><span>02</span><span>{text.learningSection}</span></div>
           <div className="learning-content"><div className="learning-heading"><h2 id="learning-title">{text.learningTitle}</h2><p>{text.learningNote}</p></div>
-            <ul className="learning-list">{portfolio.learning.map(item => <li key={item.en}><span className="learning-icon" aria-hidden="true">{item.logo ? <img src={`/icons/${item.logo}.svg`} alt="" /> : item.symbol}</span><span className="learning-name">{item[language]}</span></li>)}</ul>
+            <ul className="learning-list">{portfolio.learning.map(item => <li className="skill-chip" key={item.en}><span className="learning-icon" aria-hidden="true">{item.logo ? <img src={`/icons/${item.logo}.svg`} alt="" /> : item.symbol}</span><span className="learning-name">{item[language]}</span></li>)}</ul>
           </div>
         </motion.section>
 
@@ -113,7 +113,7 @@ function App() {
               <div className="project-item-heading"><h3>{project.title[language]}</h3><span className={`project-status project-status-${project.status}`}>{project.status === 'live' ? text.live : project.status === 'completed' ? text.completed : text.inProgress}</span></div><p>{project.description[language]}</p>
               {project.technologies.length > 0 && <p className="project-meta"><strong>{text.technologies}:</strong> {project.technologies.join(' · ')}</p>}
               {project.contribution && <p className="project-meta"><strong>{text.contribution}:</strong> {project.contribution[language]}</p>}
-              <div className="project-links">{project.repositoryUrl && <a href={project.repositoryUrl}>{text.repository}<span aria-hidden="true">↗</span></a>}{project.liveUrl && <a href={project.liveUrl}>{text.liveSite}<span aria-hidden="true">↗</span></a>}</div>
+              <div className="project-links">{project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noreferrer" aria-label={`${text.repository}: ${project.title[language]}`}>{text.repository}<span aria-hidden="true">↗</span></a>}{project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" aria-label={`${text.liveSite}: ${project.title[language]}`}>{text.liveSite}<span aria-hidden="true">↗</span></a>}</div>
             </article>)}</div> : <div className="project-empty"><span className="empty-mark" aria-hidden="true">＋</span><div><h3>{text.projectEmptyTitle}</h3><p>{text.projectEmptyNote}</p></div></div>}
           </div>
         </motion.section>
@@ -130,7 +130,7 @@ function App() {
           <div className="section-label"><span>05</span><span>{text.certificatesSection}</span></div>
           <div className="certificates-content"><h2 id="certificates-title">{text.certificatesTitle}</h2><div className="certificate-list">{certificates.map(certificate => <article className="certificate-item" key={certificate.file}>
             <div><h3>{certificate.title[language]}</h3><p>{text.earnedDate} · {certificate.earned[language]}</p></div>
-            <a href={certificate.file} target="_blank" rel="noreferrer">{text.viewCertificate}<span aria-hidden="true">↗</span></a>
+            <a href={certificate.file} target="_blank" rel="noreferrer" aria-label={`${text.viewCertificate}: ${certificate.title[language]}`}>{text.viewCertificate}<span aria-hidden="true">↗</span></a>
           </article>)}</div></div>
         </motion.section>
 
@@ -141,7 +141,7 @@ function App() {
           </div><p className="contact-signoff">{text.signoff}</p>
         </section>
       </main>
-      <footer className="site-footer section-wrap"><a className="footer-name" href="#top">{portfolio.name}<span>.</span></a><span>{text.footerProgram} · {language === 'ja' ? '神戸、日本' : portfolio.location}</span><span>© {new Date().getFullYear()}</span></footer>
+      <footer className="site-footer section-wrap"><a className="footer-name" href="#top">{text.brandName}{language === 'en' && <span>.</span>}</a><span>{text.footerProgram} · {language === 'ja' ? '神戸、日本' : portfolio.location}</span><span>© {new Date().getFullYear()}</span></footer>
     </div>
     <AnimatePresence>
       {themeTransition && !prefersReducedMotion && <motion.div className="celestial-transition" key={`${themeTransition.from}-${themeTransition.to}`} aria-hidden="true" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: motionTokens.duration.fast }}>
