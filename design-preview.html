@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Thaw Portfolio — Design System Preview</title>
+  <style>
+    :root {
+      font-family: 'Aptos', 'Yu Gothic UI', 'Meiryo', sans-serif;
+      --paper: #f4f0e8; --raised: #ebe5d9; --ink: #292a25; --muted: #67675c;
+      --line: rgba(41,42,37,.18); --olive: #68704e; --terra: #98513d;
+      --serif: Georgia, 'Yu Mincho', serif; --mono: Consolas, monospace;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px; --space-12: 48px;
+      color-scheme: light;
+    }
+    :root[data-theme='night'] { --paper: #272923; --raised: #34362e; --ink: #f1ece1; --muted: #c4bdad; --line: rgba(241,236,225,.19); --olive: #a7af8a; --terra: #d08a6c; color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); transition: background-color 180ms ease, color 180ms ease; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--olive); outline-offset: 4px; }
+    .wrap { width: min(calc(100% - 48px), 1080px); margin: 0 auto; }
+    header { display:flex; align-items:center; justify-content:space-between; min-height:76px; border-bottom:1px solid var(--line); }
+    .brand { font:600 23px var(--serif); } .brand span { color:var(--terra); }
+    .toggle { min-height:42px; padding:0 14px; border:1px solid var(--line); border-radius:999px; background:transparent; cursor:pointer; }
+    main { padding:56px 0 80px; }
+    .eyebrow,.meta { color:var(--terra); font:10px/1.5 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+    .hero { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:end; padding:24px 0 42px; border-bottom:1px solid var(--line); }
+    h1 { max-width:750px; margin:15px 0 14px; font:500 clamp(42px,8vw,84px)/.98 var(--serif); letter-spacing:-.06em; }
+    h1 em { color:var(--olive); }
+    .lead { max-width:570px; color:var(--muted); font-size:14px; line-height:1.8; }
+    h2 { margin:0 0 22px; font:500 30px var(--serif); }
+    .section { display:grid; grid-template-columns:170px 1fr; gap:32px; padding:32px 0; border-bottom:1px solid var(--line); }
+    .swatches { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .swatch { overflow:hidden; border:1px solid var(--line); }
+    .color { height:76px; background:var(--swatch); }
+    .swatch label { display:block; padding:9px; color:var(--muted); font:10px var(--mono); }
+    .type-sample { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .type-card,.sample-empty { padding:20px; border:1px solid var(--line); }
+    .type-card h3 { margin:8px 0; font:500 28px var(--serif); }
+    .type-card p,.sample-empty p { margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
+    .spacing { display:flex; align-items:end; gap:12px; min-height:88px; }
+    .step { display:grid; align-content:end; justify-items:center; gap:7px; color:var(--muted); font:9px var(--mono); }
+    .bar { width:var(--size); height:var(--size); max-height:64px; background:var(--olive); }
+    .sample-empty { display:flex; align-items:flex-start; gap:16px; }
+    .mark { display:grid; width:40px; height:40px; flex:0 0 40px; place-items:center; border:1px solid var(--line); color:var(--terra); }
+    .sample-empty h3 { margin:0 0 7px; font:500 18px var(--serif); }
+    .actions { display:flex; align-items:center; gap:20px; }
+    .primary { min-height:44px; padding:0 16px; border:0; color:var(--paper); background:var(--ink); cursor:pointer; }
+    .text-link { min-height:44px; display:inline-flex; align-items:center; border-bottom:1px solid var(--line); }
+    footer { padding:22px 0; color:var(--muted); font:10px var(--mono); }
+    @media(max-width:680px) { .hero { grid-template-columns:1fr; } .section { grid-template-columns:1fr; gap:16px; } .swatches { grid-template-columns:repeat(2,1fr); } .type-sample { grid-template-columns:1fr; } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><a class="brand" href="/">Thaw<span>.</span></a><button class="toggle" id="theme-toggle" type="button" aria-pressed="false">Switch to night theme</button></header>
+    <main>
+      <p class="eyebrow">Design system · 01</p>
+      <div class="hero"><div><h1>Warm, clear, <em>and personal.</em></h1><p class="lead">A token preview for an editorial portfolio: restrained color, readable type, open space, and honest content states.</p></div><span class="meta">Paper / Kobe / 2029</span></div>
+      <section class="section" aria-labelledby="color-title"><p class="meta">01 · Color</p><div><h2 id="color-title">Paper, charcoal, and quiet accents</h2><div class="swatches">
+        <div class="swatch"><div class="color" style="--swatch:var(--paper)"></div><label>Paper</label></div>
+        <div class="swatch"><div class="color" style="--swatch:var(--ink)"></div><label>Ink</label></div>
+        <div class="swatch"><div class="color" style="--swatch:var(--olive)"></div><label>Olive</label></div>
+        <div class="swatch"><div class="color" style="--swatch:var(--terra)"></div><label>Terracotta</label></div>
+      </div></div></section>
+      <section class="section" aria-labelledby="type-title"><p class="meta">02 · Type</p><div><h2 id="type-title">Editorial headline, plainspoken detail</h2><div class="type-sample"><article class="type-card"><span class="meta">Georgia / serif</span><h3>Learning to build useful software.</h3></article><article class="type-card"><span class="meta">System sans / body</span><p>Comfortable text for short introductions, project notes, and information a recruiter needs to scan.</p></article></div></div></section>
+      <section class="section" aria-labelledby="space-title"><p class="meta">03 · Space</p><div><h2 id="space-title">A compact 4px scale</h2><div class="spacing"><div class="step"><i class="bar" style="--size:4px"></i>4</div><div class="step"><i class="bar" style="--size:8px"></i>8</div><div class="step"><i class="bar" style="--size:12px"></i>12</div><div class="step"><i class="bar" style="--size:16px"></i>16</div><div class="step"><i class="bar" style="--size:24px"></i>24</div><div class="step"><i class="bar" style="--size:32px"></i>32</div><div class="step"><i class="bar" style="--size:48px"></i>48</div></div></div></section>
+      <section class="section" aria-labelledby="state-title"><p class="meta">04 · Components</p><div><h2 id="state-title">Actions and honest empty states</h2><div class="type-sample"><div class="sample-empty"><span class="mark" aria-hidden="true">＋</span><div><h3>Projects in progress</h3><p>Finished work will appear here with purpose, technologies, and contribution.</p></div></div><div class="actions"><button class="primary" type="button">Get in touch ↗</button><a class="text-link" href="#color-title">Explore details ↓</a></div></div></div></section>
+    </main>
+    <footer>Thaw Portfolio · tokens in design-tokens.json · see DESIGN.md for rationale</footer>
+  </div>
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      const night = root.dataset.theme !== 'night';
+      root.dataset.theme = night ? 'night' : 'day';
+      toggle.setAttribute('aria-pressed', String(night));
+      toggle.textContent = `Switch to ${night ? 'day' : 'night'} theme`;
+    });
+  </script>
+</body>
+</html>

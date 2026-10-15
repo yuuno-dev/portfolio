@@ -1,0 +1,69 @@
+{
+  "name": "Thaw Portfolio",
+  "description": "Warm editorial visual system for an early-career IT portfolio.",
+  "color": {
+    "day": {
+      "paper": "#f4f0e8",
+      "paperRaised": "#ebe5d9",
+      "ink": "#292a25",
+      "muted": "#67675c",
+      "olive": "#68704e",
+      "terracotta": "#98513d",
+      "focus": "#58643d",
+      "selectionText": "#fffdf6",
+      "buttonAccent": "#d89a7d",
+      "line": "rgba(41, 42, 37, 0.18)"
+    },
+    "night": {
+      "paper": "#272923",
+      "paperRaised": "#34362e",
+      "ink": "#f1ece1",
+      "muted": "#c4bdad",
+      "olive": "#a7af8a",
+      "terracotta": "#d08a6c",
+      "focus": "#c0c99e",
+      "selectionText": "#272923",
+      "buttonAccent": "#98513d",
+      "line": "rgba(241, 236, 225, 0.19)"
+    }
+  },
+  "typography": {
+    "sans": "Aptos, Yu Gothic UI, Hiragino Kaku Gothic ProN, Meiryo, sans-serif",
+    "serif": "Georgia, Yu Mincho, Hiragino Mincho ProN, serif",
+    "mono": "Cascadia Code, SFMono-Regular, Consolas, monospace",
+    "body": "13px / 1.85",
+    "eyebrow": "10px / 1.5",
+    "headingScale": ["clamp(32px, 4vw, 53px)", "clamp(54px, 7.2vw, 98px)"]
+  },
+  "spacing": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "8": "32px",
+    "10": "40px",
+    "12": "48px",
+    "16": "64px",
+    "20": "80px"
+  },
+  "shape": {
+    "pill": "999px",
+    "rule": "1px solid var(--line)",
+    "defaultCornerRadius": "0px"
+  },
+  "layout": {
+    "contentMax": "1180px",
+    "wideHeaderMax": "1320px",
+    "mobileBreakpoint": "600px",
+    "tabletBreakpoint": "850px",
+    "minimumViewport": "320px"
+  },
+  "motion": {
+    "fast": "160ms",
+    "theme": "180ms",
+    "sectionReveal": "350ms",
+    "reducedMotion": "Disable scroll and reveal movement; preserve content visibility."
+  }
+}
