@@ -204,6 +204,7 @@ h1, h2, h3, p { margin-top: 0; }
   .celestial-horizon { top: 56%; width: 72vw; }
   .main-nav { order: 3; width: 100%; justify-content: space-between; gap: 7px; margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line); }
   .main-nav a { min-height: 36px; font-size: 10px; }
+  .main-nav a:last-child { padding-inline: 10px; border: 1px solid var(--line); border-radius: var(--radius-pill); color: var(--ink); font-weight: 600; }
   .intro { grid-template-columns: 1fr; gap: 28px; padding-top: 53px; padding-bottom: 73px; }
   .portrait-frame { grid-column: 1; grid-row: 1; width: min(62vw, 250px); justify-self: center; }
   .intro-copy { grid-column: 1; grid-row: 2; }
