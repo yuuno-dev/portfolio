@@ -152,6 +152,7 @@ export const projects: PortfolioProject[] = [
       en: 'Planned the content and visual direction, then developed the site with AI-assisted coding.',
       ja: '掲載内容とデザインの方向性を考え、AIを活用したコーディングでサイトを制作。',
     },
+    liveUrl: 'https://thawshinesitt-portfolio.vercel.app/',
   },
   {
     title: { en: 'Yuno Study Space', ja: 'Yuno Study Space' },
