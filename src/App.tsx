@@ -18,7 +18,7 @@ function App() {
     if (typeof window === 'undefined') return 'en'
     try {
       const saved = window.localStorage.getItem('portfolio-language')
-      if (saved === 'en' || saved === 'ja') return saved
+      if (saved === 'en' || saved === 'ja' || saved === 'my') return saved
     } catch { /* English remains the default for this visit. */ }
     return 'en'
   })
@@ -33,7 +33,7 @@ function App() {
     document.querySelector('meta[name="description"]')?.setAttribute('content', text.metaDescription)
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', text.documentTitle)
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', text.metaDescription)
-    document.querySelector('meta[property="og:locale"]')?.setAttribute('content', language === 'ja' ? 'ja_JP' : 'en_US')
+    document.querySelector('meta[property="og:locale"]')?.setAttribute('content', language === 'ja' ? 'ja_JP' : language === 'my' ? 'my_MM' : 'en_US')
     document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', text.documentTitle)
     document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', text.metaDescription)
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'night' ? '#272923' : '#f4f0e8')
@@ -71,9 +71,11 @@ function App() {
             <button type="button" onClick={() => chooseLanguage('en')} aria-pressed={language === 'en'} lang="en">EN</button>
             <span aria-hidden="true">/</span>
             <button type="button" onClick={() => chooseLanguage('ja')} aria-pressed={language === 'ja'} lang="ja">日本語</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" onClick={() => chooseLanguage('my')} aria-pressed={language === 'my'} lang="my">မြန်မာ</button>
           </div>
           <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'day' ? text.themeNight : text.themeDay} aria-pressed={theme === 'night'} disabled={Boolean(themeTransition)}>
-            <span className="theme-icon" aria-hidden="true"><AnimatePresence mode="wait" initial={false}><motion.svg key={theme} viewBox="0 0 24 24" initial={prefersReducedMotion ? false : { opacity: 0, rotate: -35, scale: 0.72 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: 35, scale: 0.72 }} transition={{ duration: prefersReducedMotion ? motionTokens.duration.fast : motionTokens.duration.normal, ease: motionTokens.easing.smooth }}>{theme === 'day' ? <><circle cx="12" cy="12" r="4" fill="currentColor" /><path d="M12 1.75v2.1m0 16.3v2.1m10.25-10.25h-2.1m-16.3 0h-2.1m17.5-7.25-1.49 1.49M6.24 17.76l-1.49 1.49m14.5 0-1.49-1.49M6.24 6.24 4.75 4.75" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></> : <path d="M20.2 15.2A8.6 8.6 0 0 1 8.8 3.8 8.8 8.8 0 1 0 20.2 15.2Z" fill="currentColor" />}</motion.svg></AnimatePresence></span><span>{theme === 'day' ? (language === 'ja' ? '夜' : 'Night') : (language === 'ja' ? '昼' : 'Day')}</span>
+            <span className="theme-icon" aria-hidden="true"><AnimatePresence mode="wait" initial={false}><motion.svg key={theme} viewBox="0 0 24 24" initial={prefersReducedMotion ? false : { opacity: 0, rotate: -35, scale: 0.72 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, rotate: 35, scale: 0.72 }} transition={{ duration: prefersReducedMotion ? motionTokens.duration.fast : motionTokens.duration.normal, ease: motionTokens.easing.smooth }}>{theme === 'day' ? <><circle cx="12" cy="12" r="4" fill="currentColor" /><path d="M12 1.75v2.1m0 16.3v2.1m10.25-10.25h-2.1m-16.3 0h-2.1m17.5-7.25-1.49 1.49M6.24 17.76l-1.49 1.49m14.5 0-1.49-1.49M6.24 6.24 4.75 4.75" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></> : <path d="M20.2 15.2A8.6 8.6 0 0 1 8.8 3.8 8.8 8.8 0 1 0 20.2 15.2Z" fill="currentColor" />}</motion.svg></AnimatePresence></span><span>{theme === 'day' ? (language === 'ja' ? '夜' : language === 'my' ? 'ည' : 'Night') : (language === 'ja' ? '昼' : language === 'my' ? 'နေ့' : 'Day')}</span>
           </button>
         </div>
       </header>
@@ -121,7 +123,7 @@ function App() {
         <motion.section className="profile section-wrap section-rule" aria-labelledby="profile-title" {...reveal} viewport={{ once: true, margin: '-70px' }} transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}>
           <div className="section-label"><span>04</span><span>{text.profileSection}</span></div>
           <div className="profile-content"><h2 id="profile-title">{text.profileTitle}</h2><div className="profile-grid">
-            <article className="profile-block"><p className="profile-kicker">{text.education}</p><h3>{language === 'ja' ? '神戸電子専門学校' : portfolio.school}</h3><p>{text.program}</p><p className="profile-detail">{text.expectedGraduation}<strong>{portfolio.graduationYear}</strong></p></article>
+            <article className="profile-block"><p className="profile-kicker">{text.education}</p><h3>{language === 'ja' ? '神戸電子専門学校' : language === 'my' ? 'Kobe Denshi Senmon Gakkou' : portfolio.school}</h3><p>{text.program}</p><p className="profile-detail">{text.expectedGraduation}<strong>{portfolio.graduationYear}</strong></p></article>
             <article className="profile-block"><p className="profile-kicker">{text.qualifications}</p><div className="qualification"><span>{text.japanese}</span><strong>JLPT N2</strong></div><div className="qualification"><span>{text.english}</span><strong>TOEIC 850</strong></div></article>
           </div></div>
         </motion.section>
@@ -141,7 +143,7 @@ function App() {
           </div><p className="contact-signoff">{text.signoff}</p>
         </section>
       </main>
-      <footer className="site-footer section-wrap"><a className="footer-name" href="#top">{portfolio.name}<span>.</span></a><span>{text.footerProgram} · {language === 'ja' ? '神戸、日本' : portfolio.location}</span><span>© {new Date().getFullYear()}</span></footer>
+      <footer className="site-footer section-wrap"><a className="footer-name" href="#top">{portfolio.name}<span>.</span></a><span>{text.footerProgram} · {language === 'ja' ? '神戸、日本' : language === 'my' ? 'Kobe၊ ဂျပန်' : portfolio.location}</span><span>© {new Date().getFullYear()}</span></footer>
     </div>
     <AnimatePresence>
       {themeTransition && !prefersReducedMotion && <motion.div className="celestial-transition" key={`${themeTransition.from}-${themeTransition.to}`} aria-hidden="true" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: motionTokens.duration.fast }}>
@@ -159,3 +161,4 @@ function App() {
 }
 
 export default App
+
