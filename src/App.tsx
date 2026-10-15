@@ -62,7 +62,7 @@ function App() {
     <div className="site-shell" data-theme={theme}>
       <a className="skip-link" href="#main">{text.skip}</a>
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label={text.home}>{portfolio.name}<span>.</span></a>
+        <a className="wordmark" href="#top" aria-label={text.home}>{text.brandName}{language === 'en' && <span>.</span>}</a>
         <nav className="main-nav" aria-label={text.navLabel}>
           <a href="#about">{text.navAbout}</a><a href="#learning">{text.navLearning}</a><a href="#projects">{text.navProjects}</a><a href="#certificates">{text.navCertificates}</a><a href="#contact">{text.navContact}</a>
         </nav>
