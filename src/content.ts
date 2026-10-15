@@ -44,10 +44,11 @@ export const portfolio = {
 
 export const copy = {
   en: {
+    brandName: 'SHINE',
     documentTitle: 'Thaw — IT student in Kobe, Japan',
     metaDescription: 'Thaw is an IT student in Kobe, Japan, building programming skills through coursework and independent study while preparing for software development internships.',
     skip: 'Skip to content',
-    home: 'Thaw, home',
+    home: 'SHINE, home',
     navLabel: 'Main navigation',
     navAbout: 'About', navLearning: 'Learning', navProjects: 'Projects', navCertificates: 'Certificates', navContact: 'Contact',
     languageLabel: 'Choose language',
@@ -90,10 +91,11 @@ export const copy = {
     footerProgram: 'IT student', backToTop: 'Back to top',
   },
   ja: {
+    brandName: 'シャイン',
     documentTitle: 'Thaw — 神戸でITを学ぶ学生',
     metaDescription: '神戸電子専門学校でITを学ぶThawのポートフォリオ。授業と自主学習を通じてプログラミングスキルを身につけながら、ソフトウェア開発のインターンシップを目指しています。',
     skip: '本文へスキップ',
-    home: 'Thaw — ホーム',
+    home: 'シャイン — ホーム',
     navLabel: 'メインナビゲーション',
     navAbout: 'プロフィール', navLearning: '学習中', navProjects: 'プロジェクト', navCertificates: '資格', navContact: '連絡先',
     languageLabel: '表示言語を選択',
