@@ -23,8 +23,24 @@ function App() {
     return 'en'
   })
   const [themeTransition, setThemeTransition] = useState<{ from: Theme; to: Theme } | null>(null)
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+    try { return window.sessionStorage.getItem('shine-intro-shown') !== '1' } catch { return false }
+  })
+  const [introWordComplete, setIntroWordComplete] = useState(false)
   const text = copy[language]
   const prefersReducedMotion = useReducedMotion() ?? false
+
+  useEffect(() => {
+    if (!showIntro) return
+    if (prefersReducedMotion) {
+      setShowIntro(false)
+      return
+    }
+    try { window.sessionStorage.setItem('shine-intro-shown', '1') } catch { /* The intro can still play for this visit. */ }
+    const timeout = window.setTimeout(() => setShowIntro(false), (motionTokens.duration.maskReveal + motionTokens.duration.normal * 2) * 1000)
+    return () => window.clearTimeout(timeout)
+  }, [showIntro, prefersReducedMotion])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -59,7 +75,7 @@ function App() {
 
   return (
     <>
-    <div className="site-shell" data-theme={theme}>
+    <div className="site-shell" data-theme={theme} inert={showIntro && !prefersReducedMotion ? true : undefined}>
       <a className="skip-link" href="#main">{text.skip}</a>
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label={text.home}>{text.brandName}{language === 'en' && <span>.</span>}</a>
@@ -144,6 +160,14 @@ function App() {
       <footer className="site-footer section-wrap"><a className="footer-name" href="#top">{text.brandName}{language === 'en' && <span>.</span>}</a><span>{text.footerProgram} · {language === 'ja' ? '神戸、日本' : portfolio.location}</span><span>© {new Date().getFullYear()}</span></footer>
     </div>
     <AnimatePresence>
+      {showIntro && !prefersReducedMotion && <motion.div className="shine-loader" data-theme={theme} key="shine-loader" aria-hidden="true" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }}>
+        <div className="shine-loader-mark">
+          <motion.span className="shine-loader-word" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: motionTokens.duration.maskReveal, delay: motionTokens.duration.fast, ease: motionTokens.easing.maskReveal }} onAnimationComplete={() => setIntroWordComplete(true)}>SHINE</motion.span>
+          {introWordComplete && <motion.span className="shine-loader-rule" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: motionTokens.duration.normal, ease: motionTokens.easing.smooth }} onAnimationComplete={() => setShowIntro(false)} />}
+        </div>
+      </motion.div>}
+    </AnimatePresence>
+    <AnimatePresence>
       {themeTransition && !prefersReducedMotion && <motion.div className="celestial-transition" key={`${themeTransition.from}-${themeTransition.to}`} aria-hidden="true" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: motionTokens.duration.fast }}>
         <div className="celestial-horizon" />
         <motion.svg className="celestial-sun" viewBox="0 0 100 100" initial={{ y: themeTransition.to === 'night' ? '-70vh' : '70vh', x: '-8vw', rotate: -24, scale: 0.74, opacity: 0 }} animate={{ y: themeTransition.to === 'night' ? '70vh' : '-70vh', x: '8vw', rotate: 24, scale: 1, opacity: [0, 1, 1, 0] }} transition={{ duration: motionTokens.duration.dayNight, ease: motionTokens.easing.smooth, times: [0, 0.14, 0.78, 1] }}>
@@ -159,4 +183,3 @@ function App() {
 }
 
 export default App
-
