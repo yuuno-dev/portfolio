@@ -179,8 +179,14 @@ h1, h2, h3, p { margin-top: 0; }
 .qualification strong { font-weight: 600; }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-item { transition: transform 180ms ease, box-shadow 180ms ease; }
+  .project-item,
+  .skill-chip,
+  .profile-block,
+  .certificate-item { transition: transform 180ms ease, box-shadow 180ms ease; }
   .project-item:hover { transform: translateY(-4px); box-shadow: 0 10px 24px color-mix(in srgb, var(--ink) 10%, transparent); }
+  .skill-chip:hover { transform: translateY(-2px); box-shadow: 0 5px 14px color-mix(in srgb, var(--ink) 8%, transparent); }
+  .profile-block:hover,
+  .certificate-item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px color-mix(in srgb, var(--ink) 9%, transparent); }
   .intro-actions .button-primary { transition: transform 180ms ease, background-color 160ms ease, color 160ms ease; }
   .intro-actions .button-primary:hover { transform: translateY(-2px) rotate(-1deg); }
   .intro-actions .underlined-link span { transition: transform 180ms ease; }
